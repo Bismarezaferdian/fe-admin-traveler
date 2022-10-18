@@ -15,7 +15,9 @@ const NewHotel = () => {
   const [rooms, setRooms] = useState([]);
   const navigate = useNavigate();
 
-  const { data, loading } = useFetch("/api/v1/room");
+  const { data, loading } = useFetch(
+    `${process.env.REACT_APP_HOST}/api/v1/room`
+  );
 
   const successAdd = () => {
     // window.alert("Invalid Credentials");
@@ -70,7 +72,7 @@ const NewHotel = () => {
         photo: list,
       };
 
-      await axios.post("/api/v1/hotel", newhotel);
+      await axios.post(`${process.env.REACT_APP_HOST}/api/v1/hotel`, newhotel);
       navigate("/hotel");
       successAdd();
     } catch (err) {

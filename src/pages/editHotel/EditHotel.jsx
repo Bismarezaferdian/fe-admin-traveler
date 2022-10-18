@@ -16,7 +16,9 @@ const EditHotel = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { id } = location.state;
-  const { data } = useFetch(`/api/v1/hotel/find/${id}`);
+  const { data } = useFetch(
+    `${process.env.REACT_APP_HOST}/api/v1/hotel/find/${id}`
+  );
   const lowerCase = (string) => {
     return string.toLowerCase();
   };
@@ -41,7 +43,9 @@ const EditHotel = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const res = await axios.get("/api/v1/room");
+        const res = await axios.get(
+          `${process.env.REACT_APP_HOST}/api/v1/room`
+        );
         const room = res.data;
         setRooms(room);
       } catch (error) {
@@ -87,7 +91,10 @@ const EditHotel = () => {
         rooms: dataRoom,
         photo: list,
       };
-      await axios.put(`/api/v1/hotel/${id}`, newData);
+      await axios.put(
+        `${process.env.REACT_APP_HOST}/api/v1/hotel/${id}`,
+        newData
+      );
       // history.goBack();
       navigate("/hotel");
       successAlert();

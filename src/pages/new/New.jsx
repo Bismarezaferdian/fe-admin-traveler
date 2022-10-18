@@ -72,7 +72,10 @@ const New = ({ inputs, title }) => {
         photo: list,
       };
 
-      await axios.post("/api/v1/auth/register", newUser);
+      await axios.post(
+        `${process.env.REACT_APP_HOST}/api/v1/auth/register`,
+        newUser
+      );
       navigate("/user");
       successAdd();
     } catch (err) {

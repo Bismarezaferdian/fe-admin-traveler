@@ -32,7 +32,7 @@ const EditUser = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/api/v1/user/${id}`, admin);
+      await axios.put(`${process.env.REACT_APP_HOST}/api/v1/user/${id}`, admin);
       navigate("/user");
       successAlert();
     } catch (error) {

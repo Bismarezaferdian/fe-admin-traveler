@@ -15,7 +15,9 @@ const NewRoom = () => {
   const { user } = useContext(AuthContext);
   // console.log(user);
 
-  const { data, loading } = useFetch("/api/v1/hotel");
+  const { data, loading } = useFetch(
+    `${process.env.REACT_APP_HOST}/api/v1/hotel`
+  );
   // console.log(data)
 
   const handleChange = (e) => {
@@ -28,7 +30,10 @@ const NewRoom = () => {
     const roomNumbers = rooms.split(",").map((room) => ({ number: room }));
     try {
       if (user) {
-        await axios.post(`/api/v1/room/${hotelId}`, { ...info, roomNumbers });
+        await axios.post(
+          `${process.env.REACT_APP_HOST}/api/v1/room/${hotelId}`,
+          { ...info, roomNumbers }
+        );
       }
     } catch (err) {
       console.log(err);

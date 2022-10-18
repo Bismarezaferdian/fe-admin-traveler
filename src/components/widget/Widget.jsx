@@ -23,7 +23,9 @@ const Widget = ({ type }) => {
       // console.log(item);
       const getData = async () => {
         try {
-          const res = await axios.get(`/api/v1/${item}`);
+          const res = await axios.get(
+            `${process.env.REACT_APP_HOST}/api/v1/${item}`
+          );
           if (item === "user") {
             setDataUser(res.data);
           } else if (item === "hotel") {

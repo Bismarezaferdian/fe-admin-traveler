@@ -13,7 +13,7 @@ const EditRoom = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { id } = location.state;
-  const { data } = useFetch(`/api/v1/room/${id}`);
+  const { data } = useFetch(`${process.env.REACT_APP_HOST}/api/v1/room/${id}`);
   const [dataRooms, setDataRooms] = useState({});
 
   const lowerCase = (string) => {

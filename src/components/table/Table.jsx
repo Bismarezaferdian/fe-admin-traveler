@@ -7,7 +7,9 @@ import { Skeleton } from "@mui/material";
 
 const Table = ({ columns }) => {
   const [list, setList] = useState([]);
-  const { data, loading } = useFetch("/api/v1/booking");
+  const { data, loading } = useFetch(
+    `${process.env.REACT_APP_HOST}/api/v1/booking`
+  );
 
   useEffect(() => {
     setList(data);
