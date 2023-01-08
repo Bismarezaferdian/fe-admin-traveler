@@ -3,95 +3,37 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
-const New = ({ inputs, title }) => {
+const New = ({ inputs }) => {
   const [files, setFile] = useState("");
   const [info, setInfo] = useState({});
-  const navigate = useNavigate();
 
-  // console.log(file);
+  console.log(info);
 
-  const successAdd = () => {
-    // window.alert("Invalid Credentials");
-    toast("success add user !", {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-    });
-  };
+  // const successAdd = () => {
+  //   // window.alert("Invalid Credentials");
+  //   toast("success add user !", {
+  //     position: "top-right",
+  //     autoClose: 2000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: false,
+  //     draggable: true,
+  //     progress: undefined,
+  //   });
+  // };
 
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const handleClick = async (e) => {
-    // e.preventDefault();
-    // if (!file) {
-    //   validationImage();
-    // }
-    // const data = new FormData();
-    // data?.append("file", file);
-    // data?.append("upload_preset", "upload");
-    // try {
-    //   const uploadRes = await axios.post(
-    //     "https://api.cloudinary.com/v1_1/websitemuid/image/upload",
-    //     data
-    //   );
-
-    //   const { url } = uploadRes.data;
-
-    //   const newUser = {
-    //     ...info,
-    //     photo: url,
-    //   };
-    e.preventDefault();
-    try {
-      const list = await Promise.all(
-        Object.values(files).map(async (file) => {
-          const data = new FormData();
-          data.append("file", file);
-          data.append("upload_preset", "upload");
-          const uploadRes = await axios.post(
-            "https://api.cloudinary.com/v1_1/websitemuid/image/upload",
-            data
-          );
-          const { url } = uploadRes.data;
-          return url;
-        })
-      );
-
-      const newUser = {
-        ...info,
-        photo: list,
-      };
-
-      await axios.post(
-        `${process.env.REACT_APP_HOST}/api/v1/auth/register`,
-        newUser
-      );
-      navigate("/user");
-      successAdd();
-    } catch (err) {
-      toast(err.response.data.message);
-      console.log(err.response.data.message);
-    }
-  };
-
   return (
     <div className="new">
       <Sidebar />
-      <ToastContainer />
       <div className="newContainer">
         <Navbar />
         <div className="top">
-          <h1>{title}</h1>
+          <h1>Add New User</h1>
         </div>
         <div className="bottom">
           <div className="left">
@@ -138,7 +80,7 @@ const New = ({ inputs, title }) => {
                   <option value={true}>Yes</option>
                 </select>
               </div>
-              <button onClick={handleClick}>Send</button>
+              <button>Send</button>
             </form>
           </div>
         </div>

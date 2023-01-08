@@ -34,9 +34,11 @@ const Login = () => {
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post(
-        "https://admin-traveler.herokuapp.com/api/v1/auth/login",
         // `${process.env.REACT_APP_HOST}/api/v1/auth/login`,
-        credentials
+        "http://localhost:8000/api/v1/auth/login",
+        credentials,
+        null,
+        { withCredentials: true }
       );
 
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });

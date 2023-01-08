@@ -6,14 +6,8 @@ import FullscreenExitOutlinedIcon from "@mui/icons-material/FullscreenExitOutlin
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
-import { DarkModeContext } from "../../context/darkModeContext";
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
 
 const Navbar = () => {
-  const { dispatch } = useContext(DarkModeContext);
-  const { user } = useContext(AuthContext);
-
   return (
     <div className="navbar">
       <div className="wrapper">
@@ -27,10 +21,7 @@ const Navbar = () => {
             English
           </div>
           <div className="item">
-            <DarkModeOutlinedIcon
-              className="icon"
-              onClick={() => dispatch({ type: "TOGGLE" })}
-            />
+            <DarkModeOutlinedIcon className="icon" />
           </div>
           <div className="item">
             <FullscreenExitOutlinedIcon className="icon" />
@@ -48,7 +39,7 @@ const Navbar = () => {
           </div>
           <div className="item">
             <img
-              src={user.photo[0] || "https://i.ibb.co/MBtjqXQ/no-avatar.gif"}
+              src={"https://i.ibb.co/MBtjqXQ/no-avatar.gif"}
               alt="user"
               className="avatar"
             />
