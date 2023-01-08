@@ -34,8 +34,8 @@ const Login = () => {
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post(
-        // `${process.env.REACT_APP_HOST}/api/v1/auth/login`,
-        "http://localhost:8000/api/v1/auth/login",
+        `${process.env.REACT_APP_HOST}/api/v1/auth/login`,
+        // "http://localhost:8000/api/v1/auth/login",
         credentials,
         null,
         { withCredentials: true }
